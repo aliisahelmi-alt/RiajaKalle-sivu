@@ -301,6 +301,13 @@ html, body {
 }
 
 
+/* Siirrä sekä "Ria & Kalle" että päivämäärä ylemmäksi kaikilla näytöillä */
+.bg-image h1.display-1,
+.bg-image h2.display-4{
+  position: relative !important;
+  top: -60px !important;   /* muuta tätä arvoa: -20...-120px */
+}
+
 
 
 
