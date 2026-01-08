@@ -261,34 +261,47 @@ html, body {
     padding: 92px 16px 24px;
   }
 }
-/* =========================
-   VÄLIEN PIENENNYS
-   (liitä tiedoston loppuun)
-========================= */
 
-/* HÄÄINFO: pienempi väli ennen osio-otsikoita (esim. "VIHKITILAISUUS") */
+
+/* ====== VARMAT VÄLIT: HÄÄINFO ====== */
+
+/* Estää margin-collapsen (yleinen syy "mystiseen isoon väliin") */
+.haainfo-sivu .haainfo-sisalto{
+  padding-top: 92px !important;  /* jos haluat pienemmäksi, laske tätä */
+}
+
+/* Pienennä KAIKKIEN otsikoiden ylä- ja alavälejä Hääinfo-sisällössä */
+.haainfo-sivu .haainfo-sisalto h1,
 .haainfo-sivu .haainfo-sisalto h2,
-.haainfo-sivu .haainfo-sisalto h3{
-  margin-top: 18px !important;    /* oli isompi -> pienemmäksi */
+.haainfo-sivu .haainfo-sisalto h3,
+.haainfo-sivu .haainfo-sisalto h4{
+  margin-top: 14px !important;
   margin-bottom: 8px !important;
 }
 
-/* HÄÄINFO: hieman tiiviimmät kappalevälit */
+/* Jos "VIHKITILAISUUS" on heti tekstin jälkeen: pienennä myös edeltävän p:n alaväli */
 .haainfo-sivu .haainfo-sisalto p{
-  margin-bottom: 10px !important; /* oli 14px */
-}
-
-
-/* ILMOITTAUTUMINEN: pienempi väli otsikon ja tekstin väliin */
-.ilmoittautuminen-sivu .haa-paaotsikko{
-  margin-bottom: 8px !important;  /* oli isompi -> pienemmäksi */
-}
-
-/* Varalta, jos otsikko ei käytä .haa-paaotsikko-luokkaa */
-.ilmoittautuminen-sivu .ilmoittautuminen-sisalto h1{
   margin-bottom: 8px !important;
 }
 
+/* Jos ensimmäinen otsikko saa ison välin ylös: nollaa sen */
+.haainfo-sivu .haainfo-sisalto > :first-child{
+  margin-top: 0 !important;
+}
+
+
+/* ====== VARMAT VÄLIT: ILMOITTAUTUMINEN ====== */
+
+/* Pienennä otsikon ja ensimmäisen tekstin väliä */
+.ilmoittautuminen-sivu .ilmoittautuminen-sisalto h1,
+.ilmoittautuminen-sivu .ilmoittautuminen-sisalto .haa-paaotsikko{
+  margin-bottom: 6px !important;
+}
+
+/* Pienennä ensimmäisen kappaleen yläväliä (jos selaimen oletusmarginaali tekee ison raon) */
+.ilmoittautuminen-sivu .ilmoittautuminen-sisalto p:first-of-type{
+  margin-top: 6px !important;
+}
 
 
 
