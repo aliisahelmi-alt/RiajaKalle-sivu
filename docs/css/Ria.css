@@ -302,5 +302,13 @@ html, body {
 
 
 
+/* Siirrä etusivun molemmat otsikot ylemmäksi mobiilissa */
+@media (max-width: 768px){
+  .bg-image .display-1,
+  .bg-image .display-4{
+    transform: translateY(-60px); /* suurempi miinus = ylemmäs */
+  }
+}
+
 
 
