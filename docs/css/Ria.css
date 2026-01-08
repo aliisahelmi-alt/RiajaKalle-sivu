@@ -261,6 +261,34 @@ html, body {
     padding: 92px 16px 24px;
   }
 }
+/* =========================
+   VÄLIEN PIENENNYS
+   (liitä tiedoston loppuun)
+========================= */
+
+/* HÄÄINFO: pienempi väli ennen osio-otsikoita (esim. "VIHKITILAISUUS") */
+.haainfo-sivu .haainfo-sisalto h2,
+.haainfo-sivu .haainfo-sisalto h3{
+  margin-top: 18px !important;    /* oli isompi -> pienemmäksi */
+  margin-bottom: 8px !important;
+}
+
+/* HÄÄINFO: hieman tiiviimmät kappalevälit */
+.haainfo-sivu .haainfo-sisalto p{
+  margin-bottom: 10px !important; /* oli 14px */
+}
+
+
+/* ILMOITTAUTUMINEN: pienempi väli otsikon ja tekstin väliin */
+.ilmoittautuminen-sivu .haa-paaotsikko{
+  margin-bottom: 8px !important;  /* oli isompi -> pienemmäksi */
+}
+
+/* Varalta, jos otsikko ei käytä .haa-paaotsikko-luokkaa */
+.ilmoittautuminen-sivu .ilmoittautuminen-sisalto h1{
+  margin-bottom: 8px !important;
+}
+
 
 
 
