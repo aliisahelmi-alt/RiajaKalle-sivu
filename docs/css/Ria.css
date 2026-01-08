@@ -92,6 +92,7 @@ html, body {
   color: #fff;
   text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
   margin: 0;
+   top: -60px
   padding: 0 12px; /* ettei osu reunoihin mobiilissa */
 }
 
@@ -248,6 +249,7 @@ html, body {
   color: rgba(0, 0, 0, 0.75);
   line-height: 1.65;
   text-align: center;
+   top: -60px
 }
 
 /* Mobiili: älä lukitse taustaa fixedinä */
@@ -302,13 +304,7 @@ html, body {
 
 
 
-/* Siirrä etusivun molemmat otsikot ylemmäksi mobiilissa */
-@media (max-width: 768px){
-  .bg-image .display-1,
-  .bg-image .display-4{
-    transform: translateY(-60px); /* suurempi miinus = ylemmäs */
-  }
-}
+
 
 
 
