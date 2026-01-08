@@ -93,23 +93,16 @@ html, body {
   font-size: clamp(1.6rem, 4.5vw, 3rem);
 }
 
-
 @media (max-width: 768px) {
   .bg-image {
     padding-top: 64px;
 
-    
-    background-size: contain;
-    background-position: center;
-    background-color: #000;
-  }
-}
+    /* NÄYTTÄÄ KOKO KUVAN MOBIILISSA */
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: #000 !important;
 
-@media (max-width: 768px) {
-  .bg-image {
-    background-size: cover;
-    background-position: 55% center; 
-  }
 }
 
 .haainfo-sivu {
@@ -278,6 +271,7 @@ html, body {
   position: relative !important;
   top: -110px !important;   /* muuta tätä arvoa: -20...-120px */
 }
+
 
 
 
