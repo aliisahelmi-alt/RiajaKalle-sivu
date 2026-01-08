@@ -290,18 +290,17 @@ html, body {
 }
 
 
-/* ====== VARMAT VÄLIT: ILMOITTAUTUMINEN ====== */
-
-/* Pienennä otsikon ja ensimmäisen tekstin väliä */
-.ilmoittautuminen-sivu .ilmoittautuminen-sisalto h1,
+/* Ilmoittautuminen: pienempi väli otsikon ja tekstin väliin */
+.ilmoittautuminen-sivu .ilmoittautuminen-sisalto h2,
 .ilmoittautuminen-sivu .ilmoittautuminen-sisalto .haa-paaotsikko{
   margin-bottom: 6px !important;
 }
 
-/* Pienennä ensimmäisen kappaleen yläväliä (jos selaimen oletusmarginaali tekee ison raon) */
 .ilmoittautuminen-sivu .ilmoittautuminen-sisalto p:first-of-type{
-  margin-top: 6px !important;
+  margin-top: 0 !important;
 }
+
+
 
 
 
