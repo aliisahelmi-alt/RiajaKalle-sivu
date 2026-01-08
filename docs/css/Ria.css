@@ -1,181 +1,225 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-}
-
-.bg-image {
-    background-image: url('../img/tausta1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-      /* Täyttää ruudun “oikein” sekä mobiilissa että desktopilla */
-  min-height: 100vh;   /* fallback */
-  min-height: 100svh;  /* mobiilissa parempi */
-  min-height: 100dvh;  /* uudemmissa selaimissa paras */
-
-  width: 100%;
-  position: relative;  /* EI absolute */
-
-  /* Tila fixed navbarille (säädä jos nav on korkeampi/matalampi) */
-  padding-top: 72px;
-
-  /* Fokuspiste: tätä muuttamalla “mikä kohta kuvasta näkyy” */
-  background-position: center;
-}
-    
-.display-1,
-.display-4{
-  font-family: 'Parisienne', cursive;
-  color: #fff;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-  position: static;     /* poistaa relative/top kikkailun */
+/* =========================
+   BASE
+========================= */
+html, body {
+  height: 100%;
   margin: 0;
-}
-.display-1{ font-size: 5rem; margin-bottom: 10px; }
-.display-4{ font-size: 3rem; }
-
-
+  padding: 0;
+  font-family: sans-serif;
 }
 
+/* =========================
+   NAVBAR (toimii kaikilla sivuilla)
+   - Ylikirjoittaa Bootstrapin bg-light varmasti
+========================= */
 .navbar {
-    position: fixed; 
-    top: 0;
-    right: 0; 
-    width: 100%; 
-    z-index: 1000; 
-    justify-content: flex-end !important; 
-    background-color: #000 !important; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  justify-content: flex-end !important;
 }
-.navbar-light .navbar-nav .nav-link { 
-    color: #fff !important; 
+
+/* Bootstrapin .bg-light sisältää !important, siksi tehdään tarkempi ylikirjoitus */
+.navbar.bg-light,
+.navbar.navbar-light.bg-light,
+.navbar.navbar-expand-lg.bg-light {
+  background-color: #000 !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #fff !important;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .nav-link:focus {
-    color: #ccc !important;
+  color: #ccc !important;
 }
 
-.navbar-light .navbar-toggler-icon { 
-    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.7)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+/* Burger-ikonin väri valkoiseksi */
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-.navbar-light .navbar-toggler { 
-    border-color: rgba(62, 164, 219, 0.1);
+.navbar-light .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
-
+/* Navin ryhmittely */
 .navbar-collapse {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .navbar-nav {
-    margin-right: 1rem; 
+  margin-right: 1rem;
 }
 
 .navbar-nav .nav-item {
-    margin-left: 1rem; 
+  margin-left: 1rem;
 }
 
-.haainfo-sivu {
-    background-image: url('../img/infotausta1.jpg'); 
-    background-size: cover;
+/* =========================
+   ETUSIVU / HERO (.bg-image)
+   - Ei absolutea, ei height:100%
+   - Täyttää ruudun oikein
+   - Jättää tilaa fixed navbarille
+========================= */
+.bg-image {
+  background-image: url('../img/tausta1.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; /* desktop: täyttää ruudun, rajaa tarvittaessa */
+
+  width: 100%;
+
+  /* paremmat viewport-korkeudet mobiilissa */
+  min-height: 100vh;   /* fallback */
+  min-height: 100svh;  /* mobiilissa parempi */
+  min-height: 100dvh;  /* uudemmissa selaimissa paras */
+
+  /* jotta padding ei riko korkeutta */
+  box-sizing: border-box;
+
+  /* tilaa naville, ettei teksti mene navin alle */
+  padding-top: 72px;
+}
+
+/* Otsikot responsiiviseksi ilman top:-110px */
+.display-1,
+.display-4 {
+  font-family: 'Parisienne', cursive;
+  color: #fff;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+  margin: 0;
+  padding: 0 12px; /* ettei osu reunoihin mobiilissa */
+}
+
+.display-1 {
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  margin-bottom: 10px;
+}
+
+.display-4 {
+  font-size: clamp(1.6rem, 4.5vw, 3rem);
+}
+
+/* =========================
+   MOBIILI: ETUSIVUN KUVA
+   - Jos haluat että MOLEMMAT ihmiset näkyy, käytä contain.
+   - Tämä näyttää koko kuvan, mutta voi jättää "tyhjää" ylös/alas -> musta tausta täyttää.
+========================= */
+@media (max-width: 768px) {
+  .bg-image {
+    padding-top: 64px;
+
+    /* Näyttää koko kuvan mobiilissa */
+    background-size: contain;
     background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    background-color: #000;
+  }
+}
+
+/* Jos haluat mieluummin että kuva täyttää ruudun (cover) myös mobiilissa,
+   kommentoi yllä oleva background-size: contain pois ja käytä tätä:
+   (HUOM: silloin kuva rajautuu aina jostain kohtaa)
+*/
+/*
+@media (max-width: 768px) {
+  .bg-image {
+    background-size: cover;
+    background-position: 55% center; 
+  }
+}
+*/
+
+/* =========================
+   HÄÄINFO-SIVU (body class="haainfo-sivu")
+   - Keskitys kuntoon + mobiilille järkevät paddingit
+========================= */
+.haainfo-sivu {
+  background-image: url('../img/infotausta1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Tila naville + keskitys */
+.haainfo-sivu .haainfo-sisalto {
+  padding-top: 110px;  /* ettei sisältö mene navin alle */
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+/* Otsikot */
+.haainfo-sivu .container .haa-paaotsikko {
+  font-family: Arial, sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin: 0 0 24px;
 }
 
 .haainfo-sivu .haainfo-sisalto h3 {
-    font-family: Arial, sans-serif; 
-    font-size: 1.5rem; 
-    font-weight: bold; 
-    color: #333; 
-    display: block; 
-    width: fit-content; 
-    margin-left: auto;
-    margin-right: auto;
-
+  font-family: Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  margin: 32px 0 12px;
+  text-align: center;
 }
 
-.haainfo-sisalto p {
-    max-width: 700px; 
-    margin-left: auto; 
-    margin-right: auto; 
-    padding-left: 160px;
-    padding-right: 15px;
-    margin-top: 1em;
+/* Tekstit keskelle ilman 160px paddingia */
+.haainfo-sivu .haainfo-sisalto p {
+  max-width: 700px;
+  margin: 0 auto 14px;
+  padding: 0 16px;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.75);
+  line-height: 1.65;
+  text-align: center;
+}
+
+/* Bootstrap grid - pieni siistiminen */
+.haainfo-sivu .haainfo-sisalto .row > .col-md-6 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Mobiilissa fixed-tausta usein lagaa -> scroll */
+@media (max-width: 768px) {
+  .haainfo-sivu {
+    background-attachment: scroll;
   }
 
-.haainfo-sivu .container .haa-paaotsikko { 
-    font-family: Arial, sans-serif; 
-    font-size: 2.5rem; 
-    font-weight: bold; 
-    color: #333; 
-}
-.haainfo-sisalto p { 
-    font-size: 1rem;
-    color: rgba(0, 0, 0, 0.7);
-    line-height: 1.6;
-}
-
-.haainfo-sisalto .row > .col-md-6 { 
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-.hääinfo-sisalto h3 + p {
-    display: block; 
-    width: fit-content; 
-    margin-left: auto;
-    margin-right: auto;
+  .haainfo-sivu .haainfo-sisalto {
+    padding-top: 92px;
   }
-
-.haainfo-sivu .navbar {
-    background-color: #000 !important;
 }
 
-.haainfo-sivu .navbar-light .navbar-nav .nav-link {
-    color: #fff !important;
-}
-
-.haainfo-sivu .navbar-light .navbar-nav .nav-link:hover,
-.haainfo-sivu .navbar-light .navbar-nav .nav-link:focus {
-    color: #ccc !important;
-}
-
-.haainfo-sivu .navbar-light .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.7)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
-
-.haainfo-sivu .navbar-light .navbar-toggler {
-    border-color: rgba(62, 164, 219, 0.1);
-}
-
-
-
-
-/* jos sinulla on <body class="ilmoittautuminen-sivu"> */
+/* =========================
+   ILMOITTAUTUMINEN-SIVU (body class="ilmoittautuminen-sivu")
+========================= */
 .ilmoittautuminen-sivu {
   background-image: url("../img/infotausta1.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* halutessasi, voi myös olla scroll */
+  background-attachment: fixed;
   min-height: 100vh;
-
-  /* fallback jos kuva ei lataudu */
   background-color: #FAF0E6;
 }
 
-/* Sisältö oikean “paperi”-puolen keskelle ja sopivan levyiseksi */
-.ilmoittautuminen-sivu .ilmoittautuminen-sisalto{
+/* Sisältö keskelle ja sopivan levyiseksi */
+.ilmoittautuminen-sivu .ilmoittautuminen-sisalto {
   width: min(560px, 100%);
-  margin-left: auto;   /* <- siirtää vasemmalle */
-  margin-right: auto;/* <- ei työnnä oikealle */
-  padding: 60px 20px 40px;
+  margin: 0 auto;
+  padding: 110px 20px 40px; /* ylhäällä tilaa naville */
+  text-align: center;
 }
-
 
 /* Pääotsikko */
 .ilmoittautuminen-sivu .haa-paaotsikko {
@@ -183,74 +227,40 @@ body {
   font-size: 2.5rem;
   font-weight: 700;
   color: #333;
-  text-align: center;
-  margin: 0 0 28px;
-margin-top: 1em;
-  }
+  margin: 0 0 18px;
+}
 
-
-
-
-
-/* Alaotsikot (korjattu: ei haainfo-sisalto) */
-.ilmoittautuminen-sivu .ilmoittautuminen-sisalto h3{
+/* Alaotsikot */
+.ilmoittautuminen-sivu .ilmoittautuminen-sisalto h3 {
   font-family: Arial, sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   color: #333;
-  text-align: center;
-  margin: 32px 0 12px;
-  }
-
-.ilmoittautuminen-sivu .haa-paaotsikko{
-  margin: 0 0 3px !important;  /* pienempi väli otsikon alle */
-  margin-top: 0 !important;     /* poistaa ylimääräisen ylävälin */
+  margin: 28px 0 12px;
 }
 
-
-
-
-/* Tekstit – poistetaan 160px padding joka teki asettelusta oudon */
+/* Tekstit */
 .ilmoittautuminen-sivu .ilmoittautuminen-sisalto p {
   max-width: 520px;
   margin: 0 auto 14px;
-  padding: 0;              /* <- tärkeä */
+  padding: 0 12px;
   font-size: 1rem;
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.75);
   line-height: 1.65;
   text-align: center;
 }
 
-/* Navbar – korjattu typo (.ilmoittatuminen -> .ilmoittautuminen) */
-.ilmoittautuminen-sivu .navbar {
-  background-color: #000 !important;
-}
-
-.ilmoittautuminen-sivu .navbar-light .navbar-nav .nav-link {
-  color: #fff !important;
-}
-
-.ilmoittautuminen-sivu .navbar-light .navbar-nav .nav-link:hover,
-.ilmoittautuminen-sivu .navbar-light .navbar-nav .nav-link:focus {
-  color: #ccc !important;
-}
-
-/* Mobiili: älä lukitse taustaa fixedinä (toimii paremmin) */
+/* Mobiili: älä lukitse taustaa fixedinä */
 @media (max-width: 768px) {
   .ilmoittautuminen-sivu {
     background-attachment: scroll;
   }
 
   .ilmoittautuminen-sivu .ilmoittautuminen-sisalto {
-    margin: 0 auto;
     width: 100%;
-    padding: 28px 16px 24px;
+    padding: 92px 16px 24px;
   }
-    @media (max-width: 576px){
-  .display-1{ font-size: 3rem; }
-  .display-4{ font-size: 1.8rem; }
-  .bg-image{ padding-top: 64px; } /* jos navbar pienempi mobiilissa */
 }
 
-}
+
 
